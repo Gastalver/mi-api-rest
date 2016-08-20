@@ -1,0 +1,20 @@
+{
+  "name": "mi-api-rest",
+  "version": "1.0.0",
+  "description": "Servidor API REST basado en express y mongoDB",
+  "main": "apiserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "rest"
+  ],
+  "author": "Miguel Gastalver",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.7"
+  }
+}
