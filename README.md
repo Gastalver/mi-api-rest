@@ -22,12 +22,24 @@ Es el driver oficial de `MongoDB` para `node`. A partir de la versión 2.1.11 ha
 Crearemos una API que responderá a las URL que comiencen por `/api` y que a continuación indiquen la colección sobre la que se desea actuar con la sintaxis `/api/nombreColeccion`. 
 Así pues, la colección sobre la que se debe actuar es un parametro de la aplicación. Por ello nos valemos de `app.param` para recuperarlo.
 Básicamente `app.param()` dice a Express "Haz esto cada vez que te encuentres la cadena `api` en la  URL del request. Lo que haremos nosotros es extraer la cadena siguente, y almacenarla en una propiedad del objeto global `req` para que esté siempre disponible. De esta forma no tenemos más que referirnos a `rec.coleccion` para saber sobre qué colección debemos operar. 
-
-
+### Conexion a la base de datos. 
+Definimos una variable `url` con la cadena de conexión a la base de datos, según la sintaxis URI de Mongo.
+```
+var url = 'mongodb://localhost:27017/gestion';
+```
+Podemos encontrar más información sobre la sintaxis de la URI de conexión en [https://docs.mongodb.com/manual/reference/connection-string/](https://docs.mongodb.com/manual/reference/connection-string/).
+En principio conectamos con la base de datos y dejamos la conexion abierta todo el tiempo que el servidor esté ejecutándose. No cerramos la conexión en ningún momento.
+Lo hacemos con la instrucción:
+```
+    MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    console.log("Conexión con Servidor MongoDB realizada correctamente.");
+    });
+```
 ## Instrucciones de uso
 ### 0. Prerrequisitos.
 Es necesario que en la máquina exista `node` y una instancia del servidor `MongoDB` en funcionamiento (`mongod`).
-En esta API la base de datos se llama `mibasededatos`, y tiene dos colecciones `clientes` y `expedientes`. Cada cual debe crear su base de datos, con las colecciones que desee.
+En esta API la base de datos se llama `gestion`, y tiene dos colecciones `clientes` y `expedientes`. Cada cual debe crear su base de datos, con las colecciones que desee.
 Si se desea disfrutar de reinicio automático del servidor cada vez que se hagan cambios en el código, es necesario tener instalado con carácter global `nodemonitor`, para ello ejecutar:
 ```
 npm install -g nodemon
