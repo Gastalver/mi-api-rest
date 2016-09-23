@@ -28,11 +28,12 @@ Definimos una variable `url` con la cadena de conexión a la base de datos, seg�
 var url = 'mongodb://localhost:27017/gestion';
 ```
 Podemos encontrar más información sobre la sintaxis de la URI de conexión en [https://docs.mongodb.com/manual/reference/connection-string/](https://docs.mongodb.com/manual/reference/connection-string/).
-En principio conectamos con la base de datos y dejamos la conexion abierta todo el tiempo que el servidor esté ejecutándose. No cerramos la conexión en ningún momento.
+Cada vez que necesitemos acceder a la Base de Datos abriremos y cerraremos una conexion explícitamente.
 Lo hacemos con la instrucción:
 ```
     MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
+    
     console.log("Conexión con Servidor MongoDB realizada correctamente.");
     });
 ```
